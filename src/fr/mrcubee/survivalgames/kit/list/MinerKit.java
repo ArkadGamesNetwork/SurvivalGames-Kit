@@ -1,21 +1,27 @@
 package fr.mrcubee.survivalgames.kit.list;
 
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.mrcubee.survivalgames.kit.Kit;
 
-public class MinerKit extends Kit {
+import java.util.ArrayList;
+
+public class MinerKit extends Kit implements Listener {
 
 	private final ItemStack[] items;
 
 	public MinerKit() {
-		super("Miner", "You appear with:\n" + "- 1x Stone pickaxe durability 2 and efficiency 5",
+		super("Miner", "You appear with:\n" + "- 1x Stone pickaxe durability 3  and efficiency 5",
 				new ItemStack(Material.STONE_PICKAXE));
 		ItemMeta itemMeta;
 
@@ -35,11 +41,14 @@ public class MinerKit extends Kit {
 		return true;
 	}
 
+	private ArrayList<Player> mineur = new ArrayList<>();
+
 	@Override
 	public void givePlayerKit(Player player) {
 		if (player == null)
 			return;
 		player.getInventory().addItem(this.items);
+		mineur.add((Player) getPlayers());
 	}
 
 	@Override
@@ -62,5 +71,28 @@ public class MinerKit extends Kit {
 	@Override
 	public void update() {
 
+	}
+
+	@EventHandler
+	public void onBreakBlock(BlockBreakEvent e){
+		Player player = e.getPlayer();
+		Block b = e.getBlock();
+
+		if(mineur.contains(player)){
+
+			switch (b.getType()){
+				case IRON_ORE:
+					b.setType(Material.AIR);
+					player.getInventory().addItem(new ItemStack(Material.IRON_INGOT));
+					break;
+
+				case GOLD_ORE:
+					b.setType(Material.AIR);
+					player.getInventory().addItem(new ItemStack(Material.GOLD_INGOT));
+					break;
+
+				default: break;
+			}
+		}
 	}
 }

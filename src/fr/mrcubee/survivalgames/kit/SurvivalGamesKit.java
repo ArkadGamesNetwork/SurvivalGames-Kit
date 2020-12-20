@@ -1,5 +1,6 @@
 package fr.mrcubee.survivalgames.kit;
 
+import fr.mrcubee.survivalgames.kit.list.MinerKit;
 import org.bukkit.plugin.java.JavaPlugin;
 import fr.mrcubee.survivalgames.kit.list.RegisterKit;
 
@@ -20,6 +21,8 @@ public class SurvivalGamesKit extends JavaPlugin {
 			this.getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
+
+		getServer().getPluginManager().registerEvents(new MinerKit(), this);
 		RegisterKit.register();
 	}
 

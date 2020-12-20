@@ -3,13 +3,12 @@ package fr.mrcubee.survivalgames.kit.list.illusion;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import fr.mrcubee.bukkit.Versions;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import fr.mrcubee.bukkit.Versions;
 import fr.mrcubee.survivalgames.kit.Kit;
 
 public class IllusionKit extends Kit{
@@ -73,7 +72,7 @@ public class IllusionKit extends Kit{
 		try {
 			Field field;
 			
-			field = Class.forName("net.minecraft.server."+Versions.getCurrent().toString()+".Entity").getDeclaredField("entityCount");
+			field = Class.forName("net.minecraft.server."+ Versions.getCurrent().toString()+".Entity").getDeclaredField("entityCount");
 			field.setAccessible(true);
 			
 			entity_id_start = field.getInt(null);
