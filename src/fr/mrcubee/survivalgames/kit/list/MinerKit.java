@@ -82,7 +82,7 @@ public class MinerKit extends Kit implements Listener {
 		ItemStack itemStack = e.getPlayer().getItemInHand();
 
 		if(mineur.contains(player)){
-			if(itemStack == new ItemStack(Material.GOLD_PICKAXE) || itemStack == new ItemStack(Material.WOOD_PICKAXE)){
+			if(itemStack.getType().equals(new ItemStack(Material.WOOD_PICKAXE)) || itemStack.getType().equals(new ItemStack(Material.GOLD_PICKAXE))){
 				switch (block.getType()){
 					case IRON_ORE:
 						block.setType(Material.AIR);
