@@ -14,10 +14,7 @@ import org.bukkit.entity.Player;
 import fr.mrcubee.bukkit.packet.GenericPacketPlayOutEntityDestroy;
 import fr.mrcubee.bukkit.packet.GenericPacketPlayOutEntityTeleport;
 import fr.mrcubee.bukkit.packet.GenericPacketPlayOutNamedEntitySpawn;
-import fr.mrcubee.bukkit.packet.GenericPacketPlayOutPlayerInfo;
-import fr.mrcubee.bukkit.player.PlayerInfoAction;
-import net.minecraft.server.v1_8_R3.PacketPlayInEntityAction.EnumPlayerAction;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo.EnumPlayerInfoAction;
+
 
 public class CloneIllusion {
 	

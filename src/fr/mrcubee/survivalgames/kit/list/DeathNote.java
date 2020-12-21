@@ -25,7 +25,7 @@ public class DeathNote extends Kit {
     private final ItemStack deathNoteItem;
 
     protected DeathNote() {
-        super("DeathNote", "Tuez le joueur que vous voulez.", new ItemStack(Material.PAPER, 1));
+        super("DeathNote", "Kill any player you want.", new ItemStack(Material.PAPER, 1));
         ItemMeta itemMeta;
 
         this.deathNoteItem = new ItemStack(Material.PAPER, 1);

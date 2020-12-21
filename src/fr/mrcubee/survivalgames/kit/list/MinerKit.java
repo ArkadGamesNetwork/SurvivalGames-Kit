@@ -1,6 +1,7 @@
 package fr.mrcubee.survivalgames.kit.list;
 
 
+import fr.mrcubee.survivalgames.kit.SurvivalGamesKit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -9,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerUnleashEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -21,7 +23,7 @@ public class MinerKit extends Kit implements Listener {
 	private final ItemStack[] items;
 
 	public MinerKit() {
-		super("Miner", "You appear with:\n" + "- 1x Stone pickaxe durability 3  and efficiency 5",
+		super("Miner", "You appear with:\n" + "- 1x Stone pickaxe durability 3  and efficiency 5\n" + "- Smelting the iron and the gold" ,
 				new ItemStack(Material.STONE_PICKAXE));
 		ItemMeta itemMeta;
 
@@ -48,8 +50,9 @@ public class MinerKit extends Kit implements Listener {
 		if (player == null)
 			return;
 		player.getInventory().addItem(this.items);
-		mineur.add((Player) getPlayers());
+		mineur.add(player);
 	}
+
 
 	@Override
 	public void removePlayerKit(Player player) {
@@ -79,7 +82,6 @@ public class MinerKit extends Kit implements Listener {
 		Block b = e.getBlock();
 
 		if(mineur.contains(player)){
-
 			switch (b.getType()){
 				case IRON_ORE:
 					b.setType(Material.AIR);

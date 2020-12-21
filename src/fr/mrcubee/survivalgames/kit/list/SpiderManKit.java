@@ -20,13 +20,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class SpiderMan extends Kit {
+public class SpiderManKit extends Kit {
 
     private final ItemStack webLauncherItem;
     private final Map<Player, Long> playerCoolDown;
     private final Set<Projectile> projectiles;
 
-    public SpiderMan() {
+    public SpiderManKit() {
         super("SpiderMan", "Trapped players in your web.", new ItemStack(Material.WEB, 1));
         ItemMeta itemMeta;
 

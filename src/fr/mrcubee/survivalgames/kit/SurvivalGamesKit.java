@@ -1,8 +1,11 @@
 package fr.mrcubee.survivalgames.kit;
 
 import fr.mrcubee.survivalgames.kit.list.MinerKit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import fr.mrcubee.survivalgames.kit.list.RegisterKit;
+
+import java.util.ArrayList;
 
 public class SurvivalGamesKit extends JavaPlugin {
 
