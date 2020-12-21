@@ -4,8 +4,12 @@ package fr.mrcubee.survivalgames.kit.list;
 import fr.mrcubee.survivalgames.kit.SurvivalGamesKit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -79,18 +83,24 @@ public class MinerKit extends Kit implements Listener {
 	@EventHandler
 	public void onBreakBlock(BlockBreakEvent e){
 		Player player = e.getPlayer();
-		Block b = e.getBlock();
+		Block block = e.getBlock();
+		ItemStack itemStack = e.getPlayer().getItemInHand();
 
 		if(mineur.contains(player)){
-			switch (b.getType()){
+			switch (block.getType()){
 				case IRON_ORE:
-					b.setType(Material.AIR);
-					player.getInventory().addItem(new ItemStack(Material.IRON_INGOT));
+					block.setType(Material.AIR);
+					SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
 					break;
 
 				case GOLD_ORE:
-					b.setType(Material.AIR);
-					player.getInventory().addItem(new ItemStack(Material.GOLD_INGOT));
+					block.setType(Material.AIR);
+					SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.GOLD_INGOT));
+					break;
+
+				case DIAMOND_ORE:
+					block.setType(Material.AIR);
+					SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
 					break;
 
 				default: break;
