@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,18 +23,17 @@ public class MinerKit extends Kit implements Listener {
 	private final ItemStack[] items;
 
 	public MinerKit() {
-		super("Miner", "You appear with:\n" + "- 1x Stone pickaxe durability 3  and efficiency 5\n" + "- Smelting the iron and the gold" ,
+		super("Miner", "You appear with:\n" + "- 1x Stone pickaxe unbreakable and efficiency 5\n" + "- Smelting the iron and the gold" ,
 				new ItemStack(Material.STONE_PICKAXE));
 		ItemMeta itemMeta;
 
 		this.items = new ItemStack[] {
 				new ItemStack(Material.STONE_PICKAXE)
 		};
-		this.items[0].addEnchantment(Enchantment.DURABILITY, 2);
-		this.items[0].addEnchantment(Enchantment.DIG_SPEED, 5);
-		this.items[0].addEnchantment(Enchantment.DURABILITY, 3);
 		itemMeta = this.items[0].getItemMeta();
+		itemMeta.addEnchant(Enchantment.DIG_SPEED, 5, true);
 		itemMeta.setDisplayName(ChatColor.RED + "Miner");
+		itemMeta.spigot().setUnbreakable(true);
 		this.items[0].setItemMeta(itemMeta);
 	}
 
@@ -82,47 +82,25 @@ public class MinerKit extends Kit implements Listener {
 		ItemStack itemStack = e.getPlayer().getItemInHand();
 
 		if(mineur.contains(player)){
-			if(itemStack.getType().equals(new ItemStack(Material.WOOD_PICKAXE)) || itemStack.getType().equals(new ItemStack(Material.GOLD_PICKAXE))){
+			if(!(itemStack.getType().equals(this.items))) return;
 				switch (block.getType()){
 					case IRON_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
+						SurvivalGamesKit.getInstance().getServer().getWorld(player.getWorld().toString()).dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
 						break;
 
 					case GOLD_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.AIR));
-						break;
-
-
-					case DIAMOND_ORE:
-						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.AIR));
-						break;
-
-					default:
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.AIR));
-						break;
-
-				}
-				return;
-			}
-				switch (block.getType()){
-					case IRON_ORE:
-						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
-						break;
-
-					case GOLD_ORE:
-						block.setType(Material.AIR);
+						SurvivalGamesKit.getInstance().getServer().getWorld(player.getWorld().toString()).dropItem(block.getLocation(), new ItemStack(Material.GOLD_INGOT));
 						break;
 
 					case DIAMOND_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
+						SurvivalGamesKit.getInstance().getServer().getWorld(player.getWorld().toString()).dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
 						break;
 
 					default: break;
+
 				}
 			}
 		}
