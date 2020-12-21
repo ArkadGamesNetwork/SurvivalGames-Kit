@@ -82,26 +82,28 @@ public class MinerKit extends Kit implements Listener {
 		ItemStack itemStack = e.getPlayer().getItemInHand();
 
 		if(mineur.contains(player)){
-			if(!(itemStack.getType().equals(this.items))) return;
+			if(itemStack.getItemMeta().equals(this.items[0].getItemMeta())){
 				switch (block.getType()){
 					case IRON_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld(player.getWorld().toString()).dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
+						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
 						break;
 
 					case GOLD_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld(player.getWorld().toString()).dropItem(block.getLocation(), new ItemStack(Material.GOLD_INGOT));
+						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.GOLD_INGOT));
 						break;
 
 					case DIAMOND_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld(player.getWorld().toString()).dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
+						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
 						break;
 
 					default: break;
 
-				}
+
+				    }
+			    }
 			}
 		}
 	}
