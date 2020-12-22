@@ -23,11 +23,11 @@ public class MinerKit extends Kit implements Listener {
 	private final ItemStack[] items;
 
 	public MinerKit() {
-		super("Miner", "You appear with:\n" + "- 1x Stone pickaxe unbreakable and efficiency 5\n" + "- Smelting the iron and the gold" ,
+		super("Miner", "You appear with:\n" + "- 1x Stone pickaxe unbreakable and efficiency 5\n" + "- Smelting the iron and the gold",
 				new ItemStack(Material.STONE_PICKAXE));
 		ItemMeta itemMeta;
 
-		this.items = new ItemStack[] {
+		this.items = new ItemStack[]{
 				new ItemStack(Material.STONE_PICKAXE)
 		};
 		itemMeta = this.items[0].getItemMeta();
@@ -76,34 +76,34 @@ public class MinerKit extends Kit implements Listener {
 	}
 
 	@EventHandler
-	public void onBreakBlock(BlockBreakEvent e){
+	public void onBreakBlock(BlockBreakEvent e) {
 		Player player = e.getPlayer();
 		Block block = e.getBlock();
 		ItemStack itemStack = e.getPlayer().getItemInHand();
 
-		if(mineur.contains(player)){
+		if (mineur.contains(player)) {
 			if(itemStack.getItemMeta().equals(this.items[0].getItemMeta())){
-				switch (block.getType()){
+				switch (block.getType()) {
 					case IRON_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
+						player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
 						break;
 
 					case GOLD_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.GOLD_INGOT));
+						player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.GOLD_INGOT));
 						break;
 
 					case DIAMOND_ORE:
 						block.setType(Material.AIR);
-						SurvivalGamesKit.getInstance().getServer().getWorld("world").dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
+						player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
 						break;
 
-					default: break;
+					default:
+						break;
 
-
-				    }
-			    }
+				}
 			}
 		}
 	}
+}
