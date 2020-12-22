@@ -98,8 +98,7 @@ public class MinerKit extends Kit implements Listener {
 						player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
 						break;
 
-					default:
-						break;
+					default: break;
 
 				}
 			}
