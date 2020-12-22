@@ -81,6 +81,7 @@ public class MinerKit extends Kit implements Listener {
 
 		if (mineur.contains(player)) {
 			if(itemStack.getItemMeta().equals(this.items[0].getItemMeta())){
+
 				switch (block.getType()) {
 					case IRON_ORE:
 						block.setType(Material.AIR);
