@@ -35,5 +35,4 @@ public class RegisterKit {
 			Bukkit.getServer().getPluginManager().registerEvents(kit, survivalGames);
 		}
 	}
-
 }

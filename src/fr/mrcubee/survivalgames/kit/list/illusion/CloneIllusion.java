@@ -41,8 +41,7 @@ public class CloneIllusion {
 		this.entity_id = entity_id;
 		this.see = new ArrayList<>();
 		
-		
-		
+
 		packet_spawn = GenericPacketPlayOutNamedEntitySpawn.create();
 		packet_spawn.fillAllFromPlayer(player);
 		packet_spawn.setNamedEntityID(this.entity_id);

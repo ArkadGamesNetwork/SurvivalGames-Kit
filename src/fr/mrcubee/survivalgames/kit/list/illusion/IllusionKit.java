@@ -99,6 +99,7 @@ public class IllusionKit extends Kit{
 			Location spawn = clone.makeClone(loc);
 			if(random.nextBoolean()) loc = spawn;
 		}
+		
 		this.clones.put(player, list);
 	}
 	

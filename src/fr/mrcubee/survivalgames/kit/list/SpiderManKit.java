@@ -90,6 +90,7 @@ public class SpiderManKit extends Kit {
             return;
         this.projectiles.remove(event.getEntity());
         current = event.getEntity().getLocation().subtract(1, 1, 1);
+
         for (int y = 0; y < 3; y++) {
             for (int z = 0; z < 3; z++) {
                 for (int x = 0; x < 3; x++) {
