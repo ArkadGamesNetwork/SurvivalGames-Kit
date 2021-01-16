@@ -11,10 +11,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import fr.mrcubee.survivalgames.kit.Kit;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class MinerKit extends Kit implements Listener {
 
@@ -40,7 +39,7 @@ public class MinerKit extends Kit implements Listener {
 		return true;
 	}
 
-	private ArrayList<Player> mineur = new ArrayList<>();
+	private List<Player> mineur = new ArrayList<>();
 
 	@Override
 	public void givePlayerKit(Player player) {
@@ -56,6 +55,7 @@ public class MinerKit extends Kit implements Listener {
 		if (player == null)
 			return;
 		player.getInventory().removeItem(this.items);
+		mineur.remove(player);
 	}
 
 	@Override
@@ -74,33 +74,38 @@ public class MinerKit extends Kit implements Listener {
 	}
 
 	@EventHandler
-	public void onBreakBlock(BlockBreakEvent e) {
-		Player player = e.getPlayer();
-		Block block = e.getBlock();
-		ItemStack itemStack = e.getPlayer().getItemInHand();
+	public void onBreakBlock(BlockBreakEvent event) {
+		Player player = event.getPlayer();
+		Block block = event.getBlock();
+		if(!event.getPlayer().getItemInHand().hasItemMeta()) return;
+		ItemStack itemStack = event.getPlayer().getItemInHand();
 
 		if (mineur.contains(player)) {
-			if(itemStack.getItemMeta().equals(this.items[0].getItemMeta())){
-
 				switch (block.getType()) {
+
 					case IRON_ORE:
-						block.setType(Material.AIR);
-						player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
-						break;
+						if(itemStack.getItemMeta().equals(this.items[0].getItemMeta())){
+							block.setType(Material.AIR);
+							player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.IRON_INGOT));
+							break;
+						}
 
 					case GOLD_ORE:
-						block.setType(Material.AIR);
-						player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.GOLD_INGOT));
-						break;
+						if(itemStack.getItemMeta().equals(this.items[0].getItemMeta())){
+							block.setType(Material.AIR);
+							player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.GOLD_INGOT));
+							break;
+						}
 
 					case DIAMOND_ORE:
-						block.setType(Material.AIR);
-						player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
-						break;
+						if(itemStack.getItemMeta().equals(this.items[0].getItemMeta())){
+							block.setType(Material.AIR);
+							player.getWorld().dropItem(block.getLocation(), new ItemStack(Material.DIAMOND));
+							break;
+						}
+
 
 					default: break;
-
-				}
 			}
 		}
 	}
