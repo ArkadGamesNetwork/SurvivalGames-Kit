@@ -1,5 +1,7 @@
 package fr.mrcubee.survivalgames.kit.list;
 
+import fr.mrcubee.survivalgames.kit.SurvivalGamesKit;
+import fr.mrcubee.util.PlayerUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -10,6 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 import fr.mrcubee.survivalgames.GameStats;
 import fr.mrcubee.survivalgames.SurvivalGamesAPI;
 import fr.mrcubee.survivalgames.kit.Kit;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class NinjaKit extends Kit {
 
@@ -45,11 +48,27 @@ public class NinjaKit extends Kit {
 		if ((boots.getLightLevel() < 5) && (head.getLightLevel() < 5)
 				&& (!player.hasPotionEffect(PotionEffectType.INVISIBILITY))) {
 			player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 999999, 5), true);
+			while(player.hasPotionEffect(PotionEffectType.INVISIBILITY)){
+				new BukkitRunnable() {
+					@Override
+					public void run() {
+						PlayerUtil.sendPlayerActionBar(player, "§aYou are now invisible");
+					}
+				}.runTaskTimer(SurvivalGamesKit.getInstance(), 0, 20);
+			}
 		} else if (player.hasPotionEffect(PotionEffectType.INVISIBILITY) && (boots.getLightLevel() >= 5)
 				&& (head.getLightLevel() >= 5)) {
 			for (PotionEffect potion : player.getActivePotionEffects()) {
 				if (potion.getType().equals(PotionEffectType.INVISIBILITY) && (potion.getAmplifier() == 5)) {
 					player.removePotionEffect(PotionEffectType.INVISIBILITY);
+					while(!player.hasPotionEffect(PotionEffectType.INVISIBILITY)){
+						new BukkitRunnable() {
+							@Override
+							public void run() {
+								PlayerUtil.sendPlayerActionBar(player, "§cYou are no longer invisible");
+							}
+						}.runTaskTimer(SurvivalGamesKit.getInstance(), 0, 20);
+					}
 				}
 			}
 		}
