@@ -2,6 +2,7 @@ package fr.mrcubee.survivalgames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
 import fr.mrcubee.sign.gui.SignGUi;
+import fr.mrcubee.survivalgames.Game;
 import fr.mrcubee.survivalgames.GameStats;
 import fr.mrcubee.survivalgames.SurvivalGamesAPI;
 import fr.mrcubee.survivalgames.kit.Kit;
@@ -37,8 +38,20 @@ public class DeathNote extends Kit {
 
     @Override
     public boolean canTakeKit(Player player) {
+        Game game;
+
         if (this.signGUi == null) {
             player.sendMessage(ChatColor.RED + "[ERROR] SignGUI not loaded.");
+            return false;
+        }
+        game = SurvivalGamesAPI.getGame();
+        if (game == null || game.getPlayerInGame().size() < 10) {
+            player.sendMessage(Lang.getMessage(player, "kit.deathNote.message.required.players",
+                    "&cYou need at least %d players in the game to take the kit.", true, 10));
+            return false;
+        } else if (getPlayers().size() > 0) {
+            player.sendMessage(Lang.getMessage(player, "kit.deathNote.message.required.alreadyUse",
+                    "&cThe kit is already in use by another player.", true));
             return false;
         }
         return true;
