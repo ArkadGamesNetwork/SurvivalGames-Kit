@@ -8,6 +8,8 @@ kit.deathNote.name=DeathNote
 kit.deathNote.description=Kill the player you want.
 kit.deathNote.message.prefix=&d[DEATH NOTE] &a
 kit.deathNote.message.kill.error=Player %s does not exists.
+kit.deathNote.message.required.players=&cYou need at least %d players in the game to take the kit.
+kit.deathNote.message.required.alreadyUse=&cThe kit is already in use by another player.
 
 kit.fakeRadar.name=FakeRadar
 kit.fakeRadar.description=You can trick your position on the radar.
