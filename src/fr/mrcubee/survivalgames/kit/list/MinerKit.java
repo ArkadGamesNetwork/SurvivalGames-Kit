@@ -108,10 +108,9 @@ public class MinerKit extends Kit {
 	@EventHandler
 	public void blockBreakEvent(BlockBreakEvent event) {
 		Iterator<Recipe> recipeIterator;
-		Recipe recipe;
 
 		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING
-		|| !getPlayers().contains(event.getPlayer()))
+		|| !getPlayers().contains(event.getPlayer()) || canLostItem(event.getPlayer().getItemInHand()))
 			return;
 		recipeIterator = Bukkit.getServer().recipeIterator();
 		if (recipeIterator == null)
