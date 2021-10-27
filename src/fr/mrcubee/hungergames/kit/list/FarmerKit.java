@@ -1,5 +1,6 @@
 package fr.mrcubee.hungergames.kit.list;
 
+import fr.mrcubee.hungergames.kit.ItemKit;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.CropState;
 import org.bukkit.Material;
@@ -8,41 +9,23 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import fr.mrcubee.hungergames.kit.Kit;
-
-public class FarmerKit extends Kit {
-
-	private final ItemStack[] items;
+public class FarmerKit extends ItemKit {
 
 	public FarmerKit() {
-		super("Farmer", new ItemStack(Material.SEEDS, 1));
-		items = new ItemStack[] {
+		super("Farmer", new ItemStack(Material.SEEDS, 1), new ItemStack[] {
 				new ItemStack(Material.SEEDS),
 				new ItemStack(Material.MELON_SEEDS),
 				new ItemStack(Material.PUMPKIN_SEEDS),
 				new ItemStack(Material.CARROT),
 				new ItemStack(Material.POTATO),
 				new ItemStack(Material.COCOA)
-		};
+		});
+
 	}
 
 	@Override
 	public boolean canTakeKit(Player player) {
 		return true;
-	}
-
-	@Override
-	public void givePlayerKit(Player player) {
-		if (player == null)
-			return;
-		player.getInventory().addItem(this.items);
-	}
-
-	@Override
-	public void removePlayerKit(Player player) {
-		if (player == null)
-			return;
-		player.getInventory().removeItem(this.items);
 	}
 
 	@Override

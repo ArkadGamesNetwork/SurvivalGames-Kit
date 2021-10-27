@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class FakeRadarKit extends Kit {
 
-	private HashMap<Player, Location> players;
+	private final HashMap<Player, Location> players;
 
 	public FakeRadarKit() {
 		super("FakeRadar", new ItemStack(Material.COMPASS));

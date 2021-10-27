@@ -1,5 +1,6 @@
 package fr.mrcubee.hungergames.kit.list;
 
+import fr.mrcubee.hungergames.kit.ItemKit;
 import fr.mrcubee.langlib.Lang;
 import fr.mrcubee.hungergames.GameStats;
 import fr.mrcubee.hungergames.HungerGamesAPI;
@@ -21,21 +22,21 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class SpiderMan extends Kit {
+public class SpiderMan extends ItemKit {
 
-    private final ItemStack webLauncherItem;
     private final Map<Player, Long> playerCoolDown;
     private final Set<Projectile> projectiles;
 
     public SpiderMan() {
-        super("SpiderMan", new ItemStack(Material.WEB, 1));
+        super("SpiderMan", new ItemStack(Material.WEB, 1), new ItemStack[] {
+                new ItemStack(Material.WEB)
+        });
         ItemMeta itemMeta;
 
-        this.webLauncherItem = new ItemStack(Material.WEB, 1);
-        itemMeta = this.webLauncherItem.getItemMeta();
+        itemMeta = this.kitItems[0].getItemMeta();
         itemMeta.setDisplayName(ChatColor.YELLOW + "WEB LAUNCHER");
         itemMeta.setLore(Arrays.asList());
-        this.webLauncherItem.setItemMeta(itemMeta);
+        this.kitItems[0].setItemMeta(itemMeta);
         this.playerCoolDown = new HashMap<Player, Long>();
         this.projectiles = new LinkedHashSet<Projectile>();
     }
@@ -43,26 +44,6 @@ public class SpiderMan extends Kit {
     @Override
     public boolean canTakeKit(Player player) {
         return true;
-    }
-
-    @Override
-    public void givePlayerKit(Player player) {
-        if (player == null)
-            return;
-        player.getInventory().addItem(this.webLauncherItem);
-    }
-
-    @Override
-    public void removePlayerKit(Player player) {
-        if (player == null)
-            return;
-        this.playerCoolDown.remove(player);
-        player.getInventory().remove(this.webLauncherItem);
-    }
-
-    @Override
-    public boolean canLostItem(ItemStack itemStack) {
-        return (itemStack == null || !itemStack.isSimilar(this.webLauncherItem));
     }
 
     @Override
@@ -122,7 +103,7 @@ public class SpiderMan extends Kit {
     public void onPlayerInteract(PlayerInteractEvent event) {
         if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
                 || (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) || event.getItem() == null
-                || !event.getItem().isSimilar(this.webLauncherItem))
+                || !event.getItem().isSimilar(this.kitItems[0]))
             return;
         event.setCancelled(true);
         if (canLaunch(event.getPlayer()))

@@ -1,5 +1,6 @@
 package fr.mrcubee.hungergames.kit.list;
 
+import fr.mrcubee.hungergames.kit.ItemKit;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -8,14 +9,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import fr.mrcubee.hungergames.kit.Kit;
 
-public class LumberJackKit extends Kit {
+public class LumberJackKit extends ItemKit {
 
 	private final BlockFace[] blockFaces;
 	
 	public LumberJackKit() {
-		super("LumberJack", new ItemStack(Material.WOOD_AXE));
+		super("LumberJack", new ItemStack(Material.WOOD_AXE), new ItemStack[] {
+				new ItemStack(Material.WOOD_AXE)
+		});
 		BlockFace[] values = BlockFace.values();
 
 		this.blockFaces = new BlockFace[values.length - 1];
@@ -30,16 +32,6 @@ public class LumberJackKit extends Kit {
 	@Override
 	public boolean canTakeKit(Player player) {
 		return true;
-	}
-
-	@Override
-	public void givePlayerKit(Player player) {
-		player.getInventory().addItem(new ItemStack(Material.WOOD_AXE));
-	}
-
-	@Override
-	public void removePlayerKit(Player player) {
-		player.getInventory().removeItem(new ItemStack(Material.WOOD_AXE));
 	}
 
 	@Override

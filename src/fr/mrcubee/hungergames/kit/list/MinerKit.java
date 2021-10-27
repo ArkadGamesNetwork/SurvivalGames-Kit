@@ -1,6 +1,7 @@
 package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.kit.ItemKit;
 import fr.mrcubee.langlib.Lang;
 import fr.mrcubee.hungergames.GameStats;
 import org.bukkit.Bukkit;
@@ -17,54 +18,25 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import fr.mrcubee.hungergames.kit.Kit;
-
 import java.util.Iterator;
 
-public class MinerKit extends Kit {
-
-	private final ItemStack[] items;
+public class MinerKit extends ItemKit {
 
 	public MinerKit() {
-		super("Miner", new ItemStack(Material.STONE_PICKAXE));
+		super("Miner", new ItemStack(Material.STONE_PICKAXE), new ItemStack[] {
+				new ItemStack(Material.STONE_PICKAXE)
+		});
 		ItemMeta itemMeta;
 
-		this.items = new ItemStack[] {
-				new ItemStack(Material.STONE_PICKAXE)
-		};
-		this.items[0].addEnchantment(Enchantment.DIG_SPEED, 5);
-		itemMeta = this.items[0].getItemMeta();
+		this.kitItems[0].addEnchantment(Enchantment.DIG_SPEED, 5);
+		itemMeta = this.kitItems[0].getItemMeta();
 		itemMeta.setDisplayName(ChatColor.RED + "Miner");
 		itemMeta.spigot().setUnbreakable(true);
-		this.items[0].setItemMeta(itemMeta);
+		this.kitItems[0].setItemMeta(itemMeta);
 	}
 
 	@Override
 	public boolean canTakeKit(Player player) {
-		return true;
-	}
-
-	@Override
-	public void givePlayerKit(Player player) {
-		if (player == null)
-			return;
-		player.getInventory().addItem(this.items);
-	}
-
-	@Override
-	public void removePlayerKit(Player player) {
-		if (player == null)
-			return;
-		player.getInventory().removeItem(this.items);
-	}
-
-	@Override
-	public boolean canLostItem(ItemStack itemStack) {
-		if (itemStack == null)
-			return true;
-		for (ItemStack item : this.items)
-			if (itemStack.isSimilar(item))
-				return false;
 		return true;
 	}
 
