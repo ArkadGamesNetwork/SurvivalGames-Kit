@@ -1,8 +1,8 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
+import fr.mrcubee.hungergames.HungerGamesAPI;
 import fr.mrcubee.langlib.Lang;
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
+import fr.mrcubee.hungergames.GameStats;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.kit.Kit;
 
 import java.util.Iterator;
 
@@ -109,7 +109,7 @@ public class MinerKit extends Kit {
 	public void blockBreakEvent(BlockBreakEvent event) {
 		Iterator<Recipe> recipeIterator;
 
-		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING
+		if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
 		|| !containsPlayer(event.getPlayer()) || canLostItem(event.getPlayer().getItemInHand()))
 			return;
 		recipeIterator = Bukkit.getServer().recipeIterator();

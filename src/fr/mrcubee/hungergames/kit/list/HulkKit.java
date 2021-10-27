@@ -1,4 +1,4 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Material;
@@ -11,9 +11,9 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.GameStats;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class HulkKit extends Kit {
 	
@@ -71,10 +71,10 @@ public class HulkKit extends Kit {
 
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
-		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING)
+		if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING)
 			return;
 		if (e.getDamager() instanceof Player) {
-			if ((e.getEntity() instanceof Player) && (!SurvivalGamesAPI.getGame().isPvpEnable()))
+			if ((e.getEntity() instanceof Player) && (!HungerGamesAPI.getGame().isPvpEnable()))
 				return;
 			Player attacker = (Player) e.getDamager();
 			if (containsPlayer(attacker)) {
@@ -85,7 +85,7 @@ public class HulkKit extends Kit {
 
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
-		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING)
+		if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING)
 			return;
 		if (!containsPlayer(event.getPlayer()))
 			return;

@@ -1,4 +1,4 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Location;
@@ -9,9 +9,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.inventory.ItemStack;
 
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.GameStats;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class MonsterKit extends Kit {
 
@@ -57,7 +57,7 @@ public class MonsterKit extends Kit {
 	public void update() {
 		Location playerLoc;
 
-		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING)
+		if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING)
 			return;
 		for (Player player : getPlayers()) {
 			if (player.isOnline() && player.getInventory().getHelmet() == null) {

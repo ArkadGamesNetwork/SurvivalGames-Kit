@@ -1,12 +1,12 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
+import fr.mrcubee.hungergames.kit.HungerGamesKit;
 import fr.mrcubee.langlib.Lang;
 import fr.mrcubee.sign.gui.SignGUi;
-import fr.mrcubee.survivalgames.Game;
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.kit.Kit;
-import fr.mrcubee.survivalgames.kit.SurvivalGamesKit;
+import fr.mrcubee.hungergames.Game;
+import fr.mrcubee.hungergames.GameStats;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.kit.Kit;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -33,7 +33,7 @@ public class DeathNote extends Kit {
         itemMeta.setDisplayName(ChatColor.RED + "DEATH NOTE");
         itemMeta.setLore(Arrays.asList());
         this.deathNoteItem.setItemMeta(itemMeta);
-        this.signGUi = SignGUi.create(SurvivalGamesKit.getInstance());
+        this.signGUi = SignGUi.create(HungerGamesKit.getInstance());
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DeathNote extends Kit {
             player.sendMessage(ChatColor.RED + "[ERROR] SignGUI not loaded.");
             return false;
         }
-        game = SurvivalGamesAPI.getGame();
+        game = HungerGamesAPI.getGame();
         if (game == null || game.getPlayerInGame().size() < 10) {
             player.sendMessage(Lang.getMessage(player, "kit.deathNote.message.required.players",
                     "&cYou need at least %d players in the game to take the kit.", true, 10));
@@ -110,7 +110,7 @@ public class DeathNote extends Kit {
         if (name.isEmpty())
             return;
         target = Bukkit.getPlayer(name);
-        if (target == null || SurvivalGamesAPI.getGame().isSpectator(target)) {
+        if (target == null || HungerGamesAPI.getGame().isSpectator(target)) {
             prefix = Lang.getMessage(player, "kit.deathNote.message.prefix", "&d[DEATH NOTE] &a", true);
             player.sendMessage(prefix + Lang.getMessage(player, "kit.deathNote.message.kill.error",
                     "Player %s does not exists.", true, name));
@@ -122,7 +122,7 @@ public class DeathNote extends Kit {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING
+        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
         || (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) || event.getItem() == null
         || !event.getItem().isSimilar(this.deathNoteItem))
             return;

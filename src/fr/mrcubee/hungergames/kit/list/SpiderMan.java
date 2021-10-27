@@ -1,9 +1,9 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.GameStats;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.kit.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -100,7 +100,7 @@ public class SpiderMan extends Kit {
     public void onPlayerInteract(ProjectileHitEvent event) {
         Location current;
 
-        if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING || event.getEntity().getType() != EntityType.SNOWBALL
+        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING || event.getEntity().getType() != EntityType.SNOWBALL
         || !this.projectiles.contains(event.getEntity()))
             return;
         this.projectiles.remove(event.getEntity());
@@ -120,7 +120,7 @@ public class SpiderMan extends Kit {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING
+        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
                 || (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) || event.getItem() == null
                 || !event.getItem().isSimilar(this.webLauncherItem))
             return;

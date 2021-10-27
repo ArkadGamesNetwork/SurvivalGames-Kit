@@ -1,8 +1,8 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
+import fr.mrcubee.hungergames.GameStats;
+import fr.mrcubee.hungergames.HungerGamesAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class SwapperKit extends Kit {
 
@@ -96,7 +96,7 @@ public class SwapperKit extends Kit {
     public void entityDamageByEntityEvent(EntityDamageByEntityEvent event) { Projectile projectile;
         Player shooter;
 
-        if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING
+        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
         || !(event.getDamager() instanceof Projectile) || !(event.getEntity() instanceof LivingEntity))
             return;
         projectile = (Projectile) event.getDamager();
@@ -110,7 +110,7 @@ public class SwapperKit extends Kit {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING
+        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
         || (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
         || canLostItem(event.getItem()))
             return;

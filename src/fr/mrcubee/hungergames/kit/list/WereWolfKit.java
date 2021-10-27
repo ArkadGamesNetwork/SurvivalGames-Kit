@@ -1,16 +1,15 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.GameStats;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class WereWolfKit extends Kit {
 
@@ -84,7 +83,7 @@ public class WereWolfKit extends Kit {
 
 	@Override
 	public void update() {
-		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING)
+		if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING)
 			return;
 		for (Player player : getPlayers()) {
 			updateDamage(player);

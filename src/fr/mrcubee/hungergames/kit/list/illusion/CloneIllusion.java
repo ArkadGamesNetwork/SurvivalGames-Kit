@@ -1,4 +1,4 @@
-package fr.mrcubee.survivalgames.kit.list.illusion;
+package fr.mrcubee.hungergames.kit.list.illusion;
 
 import java.util.ArrayList;
 import java.util.HashSet;

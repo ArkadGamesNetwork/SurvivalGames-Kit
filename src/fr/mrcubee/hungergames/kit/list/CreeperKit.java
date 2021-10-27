@@ -1,4 +1,4 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Material;
@@ -7,7 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import fr.mrcubee.survivalgames.kit.Kit;
+
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class CreeperKit extends Kit {
 	

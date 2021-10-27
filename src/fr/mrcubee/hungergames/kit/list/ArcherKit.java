@@ -1,4 +1,4 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.ChatColor;
@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class ArcherKit extends Kit {
 

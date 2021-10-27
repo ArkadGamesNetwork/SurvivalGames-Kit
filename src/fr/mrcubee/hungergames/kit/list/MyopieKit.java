@@ -1,4 +1,4 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -7,9 +7,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.GameStats;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class MyopieKit extends Kit {
 	
@@ -49,7 +49,7 @@ public class MyopieKit extends Kit {
 
 	@Override
 	public void update() {
-		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING)
+		if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING)
 			return;
 		for (Player player : getPlayers()) {
 			if (player.hasPotionEffect(PotionEffectType.BLINDNESS))

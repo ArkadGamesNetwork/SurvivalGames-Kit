@@ -1,9 +1,8 @@
-package fr.mrcubee.survivalgames.kit.list.illusion;
+package fr.mrcubee.hungergames.kit.list.illusion;
 
 import java.lang.reflect.Field;
 import java.util.*;
 
-import fr.mrcubee.langlib.Lang;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,9 +10,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import fr.mrcubee.bukkit.Versions;
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.kit.Kit;
 
-public class IllusionKit extends Kit{
+public class IllusionKit extends Kit {
 	
 	private int entity_id_start;
 	private int entity_id_end;

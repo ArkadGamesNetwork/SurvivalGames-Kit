@@ -1,15 +1,14 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.ItemStack;
 
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.api.event.PlayerRadarEvent;
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.api.event.PlayerRadarEvent;
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class NoRadarKit extends Kit {
 
@@ -58,7 +57,7 @@ public class NoRadarKit extends Kit {
 
 	@EventHandler
 	public void playerRadarEvent(PlayerRadarEvent event) {
-		int playerInGame = SurvivalGamesAPI.getGame().getNumberPlayer();
+		int playerInGame = HungerGamesAPI.getGame().getNumberPlayer();
 
 		if (playerInGame == 2 || playerInGame == getNumberPlayer())
 			return;

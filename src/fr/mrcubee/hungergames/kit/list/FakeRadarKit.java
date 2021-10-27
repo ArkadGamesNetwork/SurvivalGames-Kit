@@ -1,12 +1,10 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.langlib.Lang;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.api.event.PlayerRadarEvent;
-import fr.mrcubee.survivalgames.kit.Kit;
-import fr.mrcubee.survivalgames.kit.KitManager;
-import fr.mrcubee.survivalgames.listeners.player.PlayerInteract;
-import org.bukkit.ChatColor;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.api.event.PlayerRadarEvent;
+import fr.mrcubee.hungergames.kit.Kit;
+import fr.mrcubee.hungergames.kit.KitManager;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -69,7 +67,7 @@ public class FakeRadarKit extends Kit {
 
 	@EventHandler
 	public void playerInteract(PlayerInteractEvent event) {
-		KitManager kitManager = SurvivalGamesAPI.getGame().getKitManager();
+		KitManager kitManager = HungerGamesAPI.getGame().getKitManager();
 
 		if (event.getAction() != Action.LEFT_CLICK_BLOCK
 		|| event.getItem() == null || !event.getItem().isSimilar(kitManager.getRadarItem()) || !containsPlayer(event.getPlayer()))

@@ -1,11 +1,10 @@
-package fr.mrcubee.survivalgames.kit.list;
+package fr.mrcubee.hungergames.kit.list;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import fr.mrcubee.langlib.Lang;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,9 +13,9 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import fr.mrcubee.survivalgames.GameStats;
-import fr.mrcubee.survivalgames.SurvivalGamesAPI;
-import fr.mrcubee.survivalgames.kit.Kit;
+import fr.mrcubee.hungergames.GameStats;
+import fr.mrcubee.hungergames.HungerGamesAPI;
+import fr.mrcubee.hungergames.kit.Kit;
 
 public class ThiefKit extends Kit {
 
@@ -63,7 +62,7 @@ public class ThiefKit extends Kit {
 
 	@Override
 	public void update() {
-		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING)
+		if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING)
 			return;
 		for (Entry<Player, Player> entry : thiefTargets.entrySet()) {
 			if (entry.getKey().getLocation().distance(entry.getValue().getLocation()) > 4)
@@ -76,7 +75,7 @@ public class ThiefKit extends Kit {
 		Player thief;
 		Player target;
 
-		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING || !containsPlayer(event.getPlayer())
+		if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING || !containsPlayer(event.getPlayer())
 				|| !(event.getRightClicked() instanceof Player) || !event.getPlayer().isSneaking())
 			return;
 		thief = event.getPlayer();
@@ -94,7 +93,7 @@ public class ThiefKit extends Kit {
 	public void playerInventoryMoveItem(InventoryClickEvent event) {
 		Player target = thiefTargets.get((Player) event.getWhoClicked());
 
-		if (target == null || SurvivalGamesAPI.getGame().getKitManager().canLostItem(target, event.getCurrentItem()))
+		if (target == null || HungerGamesAPI.getGame().getKitManager().canLostItem(target, event.getCurrentItem()))
 			return;
 		event.setCancelled(true);
 	}
