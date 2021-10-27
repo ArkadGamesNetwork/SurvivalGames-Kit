@@ -110,7 +110,7 @@ public class MinerKit extends Kit {
 		Iterator<Recipe> recipeIterator;
 
 		if (SurvivalGamesAPI.getGame().getGameStats() != GameStats.DURING
-		|| !getPlayers().contains(event.getPlayer()) || canLostItem(event.getPlayer().getItemInHand()))
+		|| !containsPlayer(event.getPlayer()) || canLostItem(event.getPlayer().getItemInHand()))
 			return;
 		recipeIterator = Bukkit.getServer().recipeIterator();
 		if (recipeIterator == null)
