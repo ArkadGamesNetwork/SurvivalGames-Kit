@@ -1,12 +1,12 @@
 package fr.mrcubee.survivalgames.kit.list;
 
+import fr.mrcubee.finder.plugin.PluginFinder;
 import org.bukkit.Bukkit;
 
-import fr.mrcubee.survivalgames.SurvivalGames;
 import fr.mrcubee.survivalgames.SurvivalGamesAPI;
 import fr.mrcubee.survivalgames.kit.Kit;
 import fr.mrcubee.survivalgames.kit.KitManager;
-import fr.mrcubee.survivalgames.kit.list.illusion.IllusionKit;
+import org.bukkit.plugin.Plugin;
 
 public class RegisterKit {
 	
@@ -24,17 +24,16 @@ public class RegisterKit {
 				new NoRadarKit(),
 				new FakeRadarKit(),
 				new DeathNote(),
-				new SpiderMan()
+				new SpiderMan(),
+				//new SwapperKit(),
 				//new IllusionKit()
 				//MrCubeeKit.generateKit()
 		};
-		SurvivalGames survivalGames = SurvivalGamesAPI.getGame().getPlugin();
 		KitManager kitManager = SurvivalGamesAPI.getGame().getKitManager();
 
 		for (Kit kit : kits) {
 			kitManager.registerKit(kit);
-			Bukkit.getServer().getPluginManager().registerEvents(kit, survivalGames);
+			Bukkit.getServer().getPluginManager().registerEvents(kit, (Plugin) PluginFinder.INSTANCE.findPlugin());
 		}
 	}
-
 }
