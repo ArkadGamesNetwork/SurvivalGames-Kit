@@ -4,6 +4,7 @@
     <groupId>fr.mrcubee.minecraft.plugin</groupId>
     <artifactId>survivalgames-kit</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
     
     <name>SurvivalGames-Kit</name>
     <description>minecraft survival mini-game kits</description>
@@ -82,7 +83,7 @@
     <build>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>src</sourceDirectory>
-        <finalName>${project.name}</finalName>
+        <finalName>${pom.artifactId}-noShade</finalName>
         <resources>
             <resource>
                 <directory>resource</directory>
@@ -114,7 +115,7 @@
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <shadedArtifactAttached>false</shadedArtifactAttached>
-                    <finalName>${pom.name}</finalName>
+                    <finalName>${pom.artifactId}</finalName>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
