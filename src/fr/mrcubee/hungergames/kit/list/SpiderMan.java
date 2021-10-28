@@ -1,44 +1,31 @@
 package fr.mrcubee.hungergames.kit.list;
 
-import fr.mrcubee.hungergames.kit.ItemKit;
+import fr.mrcubee.hungergames.kit.CoolDownProjectileKit;
 import fr.mrcubee.langlib.Lang;
-import fr.mrcubee.hungergames.GameStats;
-import fr.mrcubee.hungergames.HungerGamesAPI;
-import fr.mrcubee.hungergames.kit.Kit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Snowball;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.*;
 
-public class SpiderMan extends ItemKit {
-
-    private final Map<Player, Long> playerCoolDown;
-    private final Set<Projectile> projectiles;
+public class SpiderMan extends CoolDownProjectileKit {
 
     public SpiderMan() {
         super("SpiderMan", new ItemStack(Material.WEB, 1), new ItemStack[] {
                 new ItemStack(Material.WEB)
-        });
+        }, 10000, 0);
         ItemMeta itemMeta;
 
         itemMeta = this.kitItems[0].getItemMeta();
         itemMeta.setDisplayName(ChatColor.YELLOW + "WEB LAUNCHER");
         itemMeta.setLore(Arrays.asList());
         this.kitItems[0].setItemMeta(itemMeta);
-        this.playerCoolDown = new HashMap<Player, Long>();
-        this.projectiles = new LinkedHashSet<Projectile>();
     }
 
     @Override
@@ -65,27 +52,12 @@ public class SpiderMan extends ItemKit {
 
     }
 
-    private boolean canLaunch(Player player) {
-        Long time;
-
-        if (player == null)
-            return false;
-        time = this.playerCoolDown.get(player);
-        if (time != null && (System.currentTimeMillis() - time) < 10000)
-            return false;
-        this.playerCoolDown.put(player, System.currentTimeMillis());
-        return true;
-    }
-
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerInteract(ProjectileHitEvent event) {
+    private void spawnWeb(Location location) {
         Location current;
 
-        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING || event.getEntity().getType() != EntityType.SNOWBALL
-        || !this.projectiles.contains(event.getEntity()))
+        if (location == null)
             return;
-        this.projectiles.remove(event.getEntity());
-        current = event.getEntity().getLocation().subtract(1, 1, 1);
+        current = location.subtract(1, 1, 1);
         for (int y = 0; y < 3; y++) {
             for (int z = 0; z < 3; z++) {
                 for (int x = 0; x < 3; x++) {
@@ -99,14 +71,23 @@ public class SpiderMan extends ItemKit {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerInteract(PlayerInteractEvent event) {
-        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
-                || (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) || event.getItem() == null
-                || !event.getItem().isSimilar(this.kitItems[0]))
+    @Override
+    protected void onProjectileHit(Projectile projectile, Player launcher) {
+        if (projectile == null)
             return;
-        event.setCancelled(true);
-        if (canLaunch(event.getPlayer()))
-            this.projectiles.add(event.getPlayer().launchProjectile(Snowball.class));
+        spawnWeb(projectile.getLocation());
+    }
+
+    @Override
+    protected void onProjectileDamageEntity(Projectile projectile, Player launcher, Entity entity) {
+        if (entity == null)
+            return;
+        spawnWeb(entity.getLocation());
+    }
+
+    @Override
+    protected void onItemUse(Player player) {
+        if (!launch(player, Snowball.class))
+            sendCoolDownMessage(player);
     }
 }
