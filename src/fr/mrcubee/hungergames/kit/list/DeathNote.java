@@ -110,7 +110,7 @@ public class DeathNote extends Kit {
         name = nameBuilder.toString();
         if (name.isEmpty())
             return;
-        target = Bukkit.getPlayer(name);
+        target = Bukkit.getPlayerExact(name);
         if (target == null || HungerGamesAPI.getGame().isSpectator(target)) {
             prefix = Lang.getMessage(player, "kit.deathNote.message.prefix", "&d[DEATH NOTE] &a", true);
             player.sendMessage(prefix + Lang.getMessage(player, "kit.deathNote.message.kill.error",
