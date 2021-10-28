@@ -43,6 +43,9 @@ kit.noRadar.description=Vous n'êtes pas reconnaissable au radar%ntant qu'il y a
 kit.spiderMan.name=Homme araignée
 kit.spiderMan.description=Piège les joueurs dans vos toiles.
 
+kit.swapper.name=Échangeur
+kit.swapper.description=Echangez votre position avec celle de l'entité ciblée.
+
 kit.thief.name=&cVoleur
 kit.thief.description=Lorsque vous êtes à moins de 4 blocs d'un autre joueur%nvous pouvez le voler.
 

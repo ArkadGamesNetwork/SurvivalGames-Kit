@@ -1,65 +1,31 @@
 package fr.mrcubee.hungergames.kit.list;
 
+import fr.mrcubee.hungergames.kit.CoolDownProjectileKit;
+import fr.mrcubee.hungergames.kit.ItemKit;
 import fr.mrcubee.langlib.Lang;
-import fr.mrcubee.hungergames.GameStats;
-import fr.mrcubee.hungergames.HungerGamesAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import fr.mrcubee.hungergames.kit.Kit;
-
-public class SwapperKit extends Kit {
-
-    private final ItemStack[] items;
+public class SwapperKit extends CoolDownProjectileKit {
 
     public SwapperKit() {
-        super("Archer", new ItemStack(Material.SNOW_BALL));
+        super("Swapper", new ItemStack(Material.SNOW_BALL), new ItemStack[] {
+                new ItemStack(Material.SNOW_BALL)
+        }, 5000, 0);
         ItemMeta itemMeta;
 
-        this.items = new ItemStack[]{
-                new ItemStack(Material.SNOW_BALL)
-        };
-        itemMeta = this.items[0].getItemMeta();
+        itemMeta = this.kitItems[0].getItemMeta();
         itemMeta.setDisplayName(ChatColor.BLUE + "Swap");
         itemMeta.setLore(null);
-        this.items[0].setItemMeta(itemMeta);
+        this.kitItems[0].setItemMeta(itemMeta);
     }
 
     @Override
     public boolean canTakeKit(Player player) {
-        return true;
-    }
-
-    @Override
-    public void givePlayerKit(Player player) {
-        if (player == null)
-            return;
-        player.getInventory().addItem(this.items);
-    }
-
-    @Override
-    public void removePlayerKit(Player player) {
-        if (player == null)
-            return;
-        player.getInventory().removeItem(this.items);
-    }
-
-    @Override
-    public boolean canLostItem(ItemStack itemStack) {
-        if (itemStack == null)
-            return true;
-        for (ItemStack item : this.items)
-            if (itemStack.isSimilar(item))
-                return false;
         return true;
     }
 
@@ -82,39 +48,25 @@ public class SwapperKit extends Kit {
 
     }
 
-    private void swapWithLivingEntity(Player player, LivingEntity livingEntity) {
-        Location playerLocation;
+    @Override
+    protected void onProjectileHit(Projectile projectile, Player launcher) {
 
-        if (player == null || livingEntity == null)
-            return;
-        playerLocation = player.getLocation();
-        player.teleport(livingEntity);
-        livingEntity.teleport(playerLocation);
     }
 
-    @EventHandler
-    public void entityDamageByEntityEvent(EntityDamageByEntityEvent event) { Projectile projectile;
-        Player shooter;
+    @Override
+    protected void onProjectileDamageEntity(Projectile projectile, Player launcher, Entity entity) {
+        Location temp;
 
-        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
-        || !(event.getDamager() instanceof Projectile) || !(event.getEntity() instanceof LivingEntity))
+        if (launcher == null || entity == null)
             return;
-        projectile = (Projectile) event.getDamager();
-        if (projectile.getType() != EntityType.SNOWBALL || !(projectile.getShooter() instanceof Player))
-            return;
-        shooter = (Player) projectile.getShooter();
-        if (!containsPlayer(shooter))
-            return;
-        swapWithLivingEntity(shooter, (LivingEntity) event.getEntity());
+        temp = entity.getLocation();
+        entity.teleport(launcher);
+        launcher.teleport(entity);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerInteract(PlayerInteractEvent event) {
-        if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
-        || (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
-        || canLostItem(event.getItem()))
-            return;
-        event.setCancelled(true);
-
+    @Override
+    protected void onItemUse(Player player) {
+        if (!launch(player, Snowball.class))
+            sendCoolDownMessage(player);
     }
 }

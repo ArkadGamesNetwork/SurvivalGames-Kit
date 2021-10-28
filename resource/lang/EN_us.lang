@@ -45,6 +45,9 @@ kit.noRadar.description=You are not recognizable by radar%nas long as there is a
 kit.spiderMan.name=SpiderMan
 kit.spiderMan.description=Traps players in your webs.
 
+kit.swapper.name=Swapper
+kit.swapper.description=Exchange your position with that of the targeted entity.
+
 kit.thief.name=&cThief
 kit.thief.description=When you are within 4 blocks of another player%nyou can steal it.
 

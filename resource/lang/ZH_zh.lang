@@ -43,6 +43,9 @@ kit.noRadar.description=只要游戏中存在没有此套件的玩家，就无�
 kit.spiderMan.name=蜘蛛侠
 kit.spiderMan.description=诱捕您网络中的玩家。
 
+kit.swapper.name=交换器
+kit.swapper.description=与目标实体交换您的位置。
+
 kit.thief.name=&c贼
 kit.thief.description=当您在另一个玩家的4个方块之内时，您可以偷走它们。
 
