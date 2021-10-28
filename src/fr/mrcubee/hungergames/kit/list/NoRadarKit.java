@@ -24,7 +24,7 @@ public class NoRadarKit extends Kit implements VipKit {
 
 	@Override
 	public void cantTakeKitReason(Player player) {
-		VipKit.super.canTakeKit(player);
+		VipKit.super.cantTakeKitReason(player);
 	}
 
 
