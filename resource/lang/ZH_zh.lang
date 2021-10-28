@@ -1,4 +1,4 @@
-kit_cooldown.wait=&7您将能够在 &l&c%l &r&7秒内使用它。
+kit_cooldown.wait=&7您将能够在 &l&c%d &r&7秒内使用它。
 
 kit.archer.name=射手
 kit.archer.description=你出现:%n- 1x 电弧功率1和无穷大1。

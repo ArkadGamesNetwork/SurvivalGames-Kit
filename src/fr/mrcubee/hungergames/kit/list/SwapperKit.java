@@ -1,7 +1,6 @@
 package fr.mrcubee.hungergames.kit.list;
 
 import fr.mrcubee.hungergames.kit.CoolDownProjectileKit;
-import fr.mrcubee.hungergames.kit.ItemKit;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -55,13 +54,14 @@ public class SwapperKit extends CoolDownProjectileKit {
 
     @Override
     protected void onProjectileDamageEntity(Projectile projectile, Player launcher, Entity entity) {
-        Location temp;
+        Location tempLocation;
+
 
         if (launcher == null || entity == null)
             return;
-        temp = entity.getLocation();
+        tempLocation = entity.getLocation();
         entity.teleport(launcher);
-        launcher.teleport(entity);
+        launcher.teleport(tempLocation);
     }
 
     @Override

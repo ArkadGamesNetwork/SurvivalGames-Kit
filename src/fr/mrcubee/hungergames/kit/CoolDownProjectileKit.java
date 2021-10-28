@@ -3,7 +3,6 @@ package fr.mrcubee.hungergames.kit;
 import fr.mrcubee.hungergames.GameStats;
 import fr.mrcubee.hungergames.HungerGamesAPI;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -78,9 +77,12 @@ public abstract class CoolDownProjectileKit extends CoolDownItemKit {
     public void playerInteractEvent(PlayerInteractEvent event) {
         if (HungerGamesAPI.getGame().getGameStats() != GameStats.DURING
         || (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK)
-        || (this.useItemIndex >= 0 && this.useItemIndex < this.kitItems.length && event.getItem() != null && event.getItem().isSimilar(this.kitItems[this.useItemIndex])))
+        || !containsPlayer(event.getPlayer())
+        || (this.useItemIndex >= 0 && this.useItemIndex < this.kitItems.length && (event.getItem() == null || !event.getItem().isSimilar(this.kitItems[this.useItemIndex]))))
             return;
         event.setCancelled(true);
+        event.getPlayer().setItemInHand(null);
+        event.getPlayer().setItemInHand(event.getItem());
         onItemUse(event.getPlayer());
     }
 

@@ -42,9 +42,8 @@ public abstract class CoolDownItemKit extends ItemKit {
 
         if (player == null)
             return;
-        coolDownTime =  getCoolDownTimeSecond(player);
+        coolDownTime = getCoolDownTimeSecond(player);
         message = Lang.getMessage(player, "kit_cooldown.wait", "&7You will be able to use it in &l&c%l &r&7second(s).", true, coolDownTime);
-
         if (PlayerUtil.sendPlayerActionBar(player, message))
             return;
         player.sendMessage(message);
