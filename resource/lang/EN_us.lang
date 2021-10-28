@@ -3,6 +3,9 @@ kit_cooldown.wait=&7You will be able to use it in &l&c%d &r&7second(s).
 kit.archer.name=Archer
 kit.archer.description=You appear with:%n- 1x Bow power 1 and infinity 1
 
+kit.copier.name=Copier
+kit.copier.description=When you kill enemies, you accumulate their kits.
+
 kit.creeper.name=Creeper
 kit.creeper.description=When you die, you make a huge explosion.
 
@@ -45,6 +48,9 @@ kit.noRadar.description=You are not recognizable by radar%nas long as there is a
 kit.spiderMan.name=SpiderMan
 kit.spiderMan.description=Traps players in your webs.
 
+kit.stingy.name=Stingy
+kit.stingy.description=Your inventory doesn't drop when you die.
+
 kit.swapper.name=Swapper
 kit.swapper.description=Exchange your position with that of the targeted entity.
 
@@ -53,3 +59,5 @@ kit.thief.description=When you are within 4 blocks of another player%nyou can st
 
 kit.wereWolf.name=&eWereWolf
 kit.wereWolf.description=In the night you transform yourself.%n%nYou gain in strength and resistance.
+
+require.vip.message=&cYou must be vip to take this kit.

@@ -3,6 +3,9 @@ kit_cooldown.wait=&7您将能够在 &l&c%d &r&7秒内使用它。
 kit.archer.name=射手
 kit.archer.description=你出现:%n- 1x 电弧功率1和无穷大1。
 
+kit.copier.name=复印机
+kit.copier.description=当你杀死敌人时，你就会积累他们的工具包。
+
 kit.creeper.name=Creeper
 kit.creeper.description=当您死亡时，您将发生巨大的爆炸。
 
@@ -10,6 +13,8 @@ kit.deathNote.name=死亡笔记
 kit.deathNote.description=杀死想要的玩家。
 kit.deathNote.message.prefix=&d[死亡笔记] &a
 kit.deathNote.message.kill.error=%s播放器不存在。
+kit.deathNote.message.required.players=&c游戏中至少需要 %d 名玩家才能获得该套件。
+kit.deathNote.message.required.alreadyUse=&c该套件已被其他玩家使用。
 
 kit.fakeRadar.name=假雷达
 kit.fakeRadar.description=您可能会误导您在雷达上的位置。
@@ -43,6 +48,9 @@ kit.noRadar.description=只要游戏中存在没有此套件的玩家，就无�
 kit.spiderMan.name=蜘蛛侠
 kit.spiderMan.description=诱捕您网络中的玩家。
 
+kit.stingy.name=小气
+kit.stingy.description=当您死亡时，您的库存不会下降。
+
 kit.swapper.name=交换器
 kit.swapper.description=与目标实体交换您的位置。
 
@@ -51,3 +59,5 @@ kit.thief.description=当您在另一个玩家的4个方块之内时，您可以
 
 kit.wereWolf.name=&e狼人
 kit.wereWolf.description=在夜晚，你变了。您会获得力量和抵抗力。
+
+require.vip.message=&c您必须是贵宾才能使用此套件。

@@ -13,6 +13,7 @@ public class RegisterKit {
 	public static void register() {
 		Kit[] kits = new Kit[] {
 				new ArcherKit(),
+				new CopierKit(),
 				new CreeperKit(),
 				new DeathNote(),
 				new FakeRadarKit(),
@@ -23,6 +24,7 @@ public class RegisterKit {
 				new NinjaKit(),
 				new NoRadarKit(),
 				new SpiderMan(),
+				new StingyKit(),
 				new SwapperKit(),
 				new ThiefKit(),
 				new WereWolfKit()

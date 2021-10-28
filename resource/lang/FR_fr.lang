@@ -3,6 +3,9 @@ kit_cooldown.wait=&7Vous pourrez l'utiliser dans &l&c%d &r&7seconde(s).
 kit.archer.name=Archer
 kit.archer.description=Vous apparaissez avec:%n- 1x Arc puissance 1 et infinité 1
 
+kit.copier.name=Copieur
+kit.copier.description=Lorsque vous tuez des ennemis, vous accumulez leurs kits.
+
 kit.creeper.name=Creeper
 kit.creeper.description=Quand vous mourrez, vous faites une énorme explosion.
 
@@ -10,6 +13,8 @@ kit.deathNote.name=Notes de décès
 kit.deathNote.description=Tuez le joueur que vous voulez.
 kit.deathNote.message.prefix=&d[Notes de décès] &a
 kit.deathNote.message.kill.error=Le joueur %s n'existe pas.
+kit.deathNote.message.required.players=&cVous avez besoin d'au moins %d joueurs dans le jeu pour prendre le kit.
+kit.deathNote.message.required.alreadyUse=&cLe kit est déjà utilisé par un autre joueur.
 
 kit.fakeRadar.name=FauxRadar
 kit.fakeRadar.description=Vous pouvez tromper votre position sur le radar.
@@ -43,6 +48,9 @@ kit.noRadar.description=Vous n'êtes pas reconnaissable au radar%ntant qu'il y a
 kit.spiderMan.name=Homme araignée
 kit.spiderMan.description=Piège les joueurs dans vos toiles.
 
+kit.stingy.name=Radin
+kit.stingy.description=Votre inventaire ne tombe pas lorsque vous mourez.
+
 kit.swapper.name=Échangeur
 kit.swapper.description=Echangez votre position avec celle de l'entité ciblée.
 
@@ -51,3 +59,5 @@ kit.thief.description=Lorsque vous êtes à moins de 4 blocs d'un autre joueur%n
 
 kit.wereWolf.name=&eLoup-Garou
 kit.wereWolf.description=Dans la nuit, vous vous transformez.%n%nVous gagnez en force et en résistance.
+
+require.vip.message=&cVous devez être vip pour prendre ce kit.
