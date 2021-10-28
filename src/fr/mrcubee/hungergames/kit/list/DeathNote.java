@@ -38,23 +38,24 @@ public class DeathNote extends Kit {
 
     @Override
     public boolean canTakeKit(Player player) {
-        Game game;
+        Game game = HungerGamesAPI.getGame();
 
-        if (this.signGUi == null) {
+        return this.signGUi != null && game != null && game.getPlayerInGame().size() > 10 && getPlayers().size() <= 0;
+    }
+
+    @Override
+    public void cantTakeKitReason(Player player) {
+        Game game = HungerGamesAPI.getGame();
+
+        if (this.signGUi == null)
             player.sendMessage(ChatColor.RED + "[ERROR] SignGUI not loaded.");
-            return false;
-        }
-        game = HungerGamesAPI.getGame();
-        if (game == null || game.getPlayerInGame().size() < 10) {
+        else if (game == null || game.getPlayerInGame().size() < 10) {
             player.sendMessage(Lang.getMessage(player, "kit.deathNote.message.required.players",
                     "&cYou need at least %d players in the game to take the kit.", true, 10));
-            return false;
         } else if (getPlayers().size() > 0) {
             player.sendMessage(Lang.getMessage(player, "kit.deathNote.message.required.alreadyUse",
                     "&cThe kit is already in use by another player.", true));
-            return false;
         }
-        return true;
     }
 
     @Override

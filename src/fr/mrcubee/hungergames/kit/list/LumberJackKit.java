@@ -35,6 +35,11 @@ public class LumberJackKit extends ItemKit {
 	}
 
 	@Override
+	public void cantTakeKitReason(Player player) {
+
+	}
+
+	@Override
 	public boolean canLostItem(ItemStack itemStack) {
 		return true;
 	}

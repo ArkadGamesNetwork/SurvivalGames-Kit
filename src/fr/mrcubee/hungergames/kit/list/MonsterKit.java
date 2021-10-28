@@ -25,6 +25,11 @@ public class MonsterKit extends Kit {
 	}
 
 	@Override
+	public void cantTakeKitReason(Player player) {
+
+	}
+
+	@Override
 	public void givePlayerKit(Player player) {
 		player.getInventory().setHelmet(new ItemStack(Material.LEATHER_HELMET));
 	}

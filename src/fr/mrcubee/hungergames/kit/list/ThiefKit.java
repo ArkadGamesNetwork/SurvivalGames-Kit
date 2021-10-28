@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import fr.mrcubee.hungergames.kit.VipKit;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,7 +18,7 @@ import fr.mrcubee.hungergames.GameStats;
 import fr.mrcubee.hungergames.HungerGamesAPI;
 import fr.mrcubee.hungergames.kit.Kit;
 
-public class ThiefKit extends Kit {
+public class ThiefKit extends Kit implements VipKit {
 
 	private final Map<Player, Player> thiefTargets;
 	
@@ -28,7 +29,12 @@ public class ThiefKit extends Kit {
 
 	@Override
 	public boolean canTakeKit(Player player) {
-		return true;
+		return VipKit.super.canTakeKit(player);
+	}
+
+	@Override
+	public void cantTakeKitReason(Player player) {
+		VipKit.super.cantTakeKitReason(player);
 	}
 
 	@Override

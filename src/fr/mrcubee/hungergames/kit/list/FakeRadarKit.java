@@ -32,6 +32,11 @@ public class FakeRadarKit extends Kit {
 	}
 
 	@Override
+	public void cantTakeKitReason(Player player) {
+
+	}
+
+	@Override
 	public void givePlayerKit(Player player) {
 
 	}

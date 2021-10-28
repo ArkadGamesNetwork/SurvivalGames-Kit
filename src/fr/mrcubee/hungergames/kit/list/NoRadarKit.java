@@ -1,5 +1,6 @@
 package fr.mrcubee.hungergames.kit.list;
 
+import fr.mrcubee.hungergames.kit.VipKit;
 import fr.mrcubee.langlib.Lang;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,7 +11,7 @@ import fr.mrcubee.hungergames.HungerGamesAPI;
 import fr.mrcubee.hungergames.api.event.PlayerRadarEvent;
 import fr.mrcubee.hungergames.kit.Kit;
 
-public class NoRadarKit extends Kit {
+public class NoRadarKit extends Kit implements VipKit {
 
 	public NoRadarKit() {
 		super( "NoRadar", new ItemStack(Material.BARRIER));
@@ -18,8 +19,14 @@ public class NoRadarKit extends Kit {
 
 	@Override
 	public boolean canTakeKit(Player player) {
-		return true;
+		return VipKit.super.canTakeKit(player);
 	}
+
+	@Override
+	public void cantTakeKitReason(Player player) {
+		VipKit.super.canTakeKit(player);
+	}
+
 
 	@Override
 	public void givePlayerKit(Player player) {

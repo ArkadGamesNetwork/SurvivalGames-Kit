@@ -31,6 +31,11 @@ public class ArcherKit extends ItemKit {
     }
 
     @Override
+    public void cantTakeKitReason(Player player) {
+
+    }
+
+    @Override
     public void givePlayerKit(Player player) {
         if (player == null)
             return;

@@ -29,6 +29,11 @@ public class SwapperKit extends CoolDownProjectileKit {
     }
 
     @Override
+    public void cantTakeKitReason(Player player) {
+
+    }
+
+    @Override
     public String getDisplayName(Player player) {
         if (player == null)
             return null;

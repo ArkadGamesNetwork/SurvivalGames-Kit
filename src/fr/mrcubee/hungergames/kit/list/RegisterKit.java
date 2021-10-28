@@ -13,19 +13,19 @@ public class RegisterKit {
 	public static void register() {
 		Kit[] kits = new Kit[] {
 				new ArcherKit(),
-				new MinerKit(),
-				new LumberJackKit(),
-				new MonsterKit(),
 				new CreeperKit(),
-				new FarmerKit(),
-				new NinjaKit(),
-				new ThiefKit(),
-				new WereWolfKit(),
-				new NoRadarKit(),
-				new FakeRadarKit(),
 				new DeathNote(),
+				new FakeRadarKit(),
+				new FarmerKit(),
+				new LumberJackKit(),
+				new MinerKit(),
+				new MonsterKit(),
+				new NinjaKit(),
+				new NoRadarKit(),
 				new SpiderMan(),
-				new SwapperKit()
+				new SwapperKit(),
+				new ThiefKit(),
+				new WereWolfKit()
 				//new IllusionKit()
 				//MrCubeeKit.generateKit()
 		};
